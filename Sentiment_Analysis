@@ -1,0 +1,40 @@
+'-------------------------SENTIMENT ANALYSIS----------------------------------'     
+"SENTIMENT ANALYSIS BASICS" 
+from textblob import TextBlob
+sentence = "Kedarnath is a great place to visit"
+s = TextBlob(sentence)
+s.sentiment
+# s.sentiment
+# Out[4]: Sentiment(polarity=0.8, subjectivity=0.75)
+'The statement is positive | it is a public opinion and and not a factual info'
+
+a = "The sky is blue"
+a = TextBlob(sentence)
+a.sentiment
+# s.sentiment
+# Out[6]: Sentiment(polarity=0.0, subjectivity=0.1)
+'The statement is neutral | It represents a factual info ->Lower subjectivity'       
+
+'Spelling correction'      
+x = 'He loves playing criket'
+y = TextBlob(x)
+y.correct() 
+
+"Getting some insights by extracting keywords"
+blob = TextBlob('Analytics Vidhya is a thriving community for data driven industry. This platform allows \
+people to know more about analytics from its articles, Q&A forum, and learning paths. Also, we help \
+professionals & amateurs to sharpen their skillsets by providing a platform to participate in Hackathons.')
+        
+nouns = list()
+for word,tag in blob.tags:
+    if tag == 'NN':
+        nouns.append(word.lemmatize())
+
+print('This summary is about')
+for i in nouns:
+    print(i)
+
+'Translation'        
+t = 'Hello'
+b = TextBlob(t)
+b.translate(from_lang='en',to ='ar')
